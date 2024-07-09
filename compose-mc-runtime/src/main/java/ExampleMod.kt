@@ -1,6 +1,10 @@
 package com.example.examplemod
 
+import androidx.compose.runtime.*
 import com.example.examplemod.screen.ComposeScreen
+import com.example.examplemod.screen.Text
+import kotlinx.atomicfu.atomic
+import kotlinx.coroutines.delay
 import net.minecraft.client.Minecraft
 import net.minecraft.network.chat.Component
 import net.neoforged.fml.common.Mod
@@ -13,6 +17,7 @@ import org.apache.logging.log4j.Logger
 import thedarkcolour.kotlinforforge.neoforge.forge.FORGE_BUS
 import thedarkcolour.kotlinforforge.neoforge.forge.MOD_BUS
 import thedarkcolour.kotlinforforge.neoforge.forge.runForDist
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Main mod class. Should be an `object` declaration annotated with `@Mod`.
@@ -64,12 +69,48 @@ object ExampleMod {
         LOGGER.log(Level.INFO, "Server starting...")
     }
 
+    val x = atomic(11)
+
     private fun playerLoggedInEvent(event: PlayerLoggedInEvent) {
         LOGGER.log(Level.INFO, "PlayerLoggedInEvent")
 
         Minecraft.getInstance().execute {
-            Minecraft.getInstance().setScreen(ComposeScreen(Component.empty()))
+            val composeScreen = ComposeScreen(Component.empty()) {
+                ComposeScreenContent()
+            }
+            Minecraft.getInstance().setScreen(composeScreen)
         }
     }
 
 }
+
+@Composable
+fun ComposeScreenContent() {
+    var text by remember { mutableStateOf("Hello World!") }
+
+    LaunchedEffect(Unit) {
+        repeat(100) { num ->
+            text = "Hello World: $num"
+            delay(500.milliseconds)
+        }
+    }
+
+    Text(text)
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
