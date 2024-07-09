@@ -1,34 +1,17 @@
 [versions]
 kotlin = "2.0.0"
-compose-plugin = "0.0.0"
-dokka = "1.9.20"
+compose-plugin = "1.7.0-alpha01"
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
-compose-compiler-plugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [libraries]
 # Compose
-compose-runtime-desktop = "org.jetbrains.compose.runtime:runtime-desktop:1.6.11"
-compose-ui-desktop = "org.jetbrains.compose.ui:ui-desktop:1.6.11"
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-plugin" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-plugin" }
 kotlin-plugin-compose = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
 
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-plugin-core = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-spotless-gradlePlugin = "com.diffplug.spotless:spotless-plugin-gradle:6.25.0"
-maven-publish-gradlePlugin = "com.vanniktech:gradle-maven-publish-plugin:0.29.0"
-binary-compatibility-validator-gradlePlugin = "org.jetbrains.kotlinx:binary-compatibility-validator:0.14.0"
-
 kotlinx-coroutines-core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1"
-
-ktlint-core = "com.pinterest.ktlint:ktlint-cli:1.3.0"
-ktlint-composeRules = "io.nlopez.compose.rules:ktlint:0.4.4"
-
-jansi = "org.fusesource.jansi:jansi:2.4.1"
-mordant = "com.github.ajalt.mordant:mordant:2.6.0"
-codepoints = "de.cketti.unicode:kotlin-codepoints:0.8.0"
-
-#junit4 = "junit:junit:4.13.2"
-#assertk = "com.willowtreeapps.assertk:assertk:0.28.1"
