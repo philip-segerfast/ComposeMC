@@ -1,7 +1,7 @@
 package com.example.examplemod.screen
 
 import androidx.compose.runtime.*
-import com.example.examplemod.ExampleMod.ID
+import com.example.examplemod.MinecraftCompose.ID
 import com.example.examplemod.Fonts
 import kotlinx.coroutines.Dispatchers
 import net.minecraft.client.gui.Font

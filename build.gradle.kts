@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.com.intellij.openapi.vfs.StandardFileSystems.jar
-
 val modVersion: String by project
 val modGroupId: String by project
 
@@ -8,14 +6,14 @@ plugins {
     alias(libs.plugins.jetbrainsCompose) apply false
 
     id("idea")
-    id("net.neoforged.gradle.userdev") version "7.0.145" apply false
+    alias(libs.plugins.neogradle) apply false
 
     // Adds the Kotlin Gradle plugin
     id("org.jetbrains.kotlin.jvm") version "2.0.0" apply false
     // OPTIONAL Kotlin Serialization plugin
     //id 'org.jetbrains.kotlin.plugin.serialization' version '2.0.0'
 
-    id("org.jetbrains.kotlinx.atomicfu") version "0.25.0" apply false
+//    id("org.jetbrains.kotlinx.atomicfu") version "0.25.0" apply false
 }
 
 version = modVersion
@@ -23,7 +21,6 @@ group = modGroupId
 
 allprojects {
     repositories {
-        mavenLocal()
         // Add KFF Maven repository
         maven("https://thedarkcolour.github.io/KotlinForForge/") {
             name = "Kotlin for Forge"
